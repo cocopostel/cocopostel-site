@@ -23,5 +23,5 @@ document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.que
 render('all');
 const tk=P.filter(p=>brk(p.text)).slice(0,8).map(p=>`<a href="${p.url}" target="_blank" rel="noopener">${esc(head(p.text))}</a>`).join('');
 document.getElementById('ticker').innerHTML=tk+tk;
-document.getElementById('dateline').textContent=new Date().toLocaleDateString('en-GB',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long',year:'numeric'});
+document.getElementById('dateline').textContent='London · '+new Date().toLocaleDateString('en-GB',{timeZone:'Europe/London',weekday:'long',day:'numeric',month:'long',year:'numeric'});
 setTimeout(()=>{if(!document.querySelector('#live iframe'))document.getElementById('fallback').hidden=false},6000);
