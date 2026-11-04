@@ -1,5 +1,21 @@
 window.POSTS=[
  {
+  "id": "2118076055277683132",
+  "text": "🚨 Major US military reinforcements are heading toward the Middle East.\n\nFlight tracking shows several US military transport aircraft crossing the Atlantic and Europe on their way to the region.\n\nvia AB4_Ali3",
+  "img": "https://pbs.twimg.com/media/HWTq66TW0AEQO4t.jpg",
+  "created_at": "2026-11-04T20:20:58.000Z",
+  "t": "04 Nov 2026, 20:20",
+  "url": "https://x.com/CocoPostel/status/2118076055277683132"
+ },
+ {
+  "id": "2118074804213604621",
+  "text": "New photos of the Neo Nazi Finno Ugric group \"Northern Brotherhood\" (Pohjoinen Veljeskunta).\n\nThe group is allegedly active in Karelia and with Ukrainian forces. Gunmen appear with AKS 74 and Type 3 AK 47 pattern rifles.\n\nvia war_noir",
+  "img": "https://pbs.twimg.com/amplify_video_thumb/2118074680024162304/img/bx43wTCjLLYyHPuq.jpg",
+  "created_at": "2026-11-04T20:15:59.000Z",
+  "t": "04 Nov 2026, 20:15",
+  "url": "https://x.com/CocoPostel/status/2118074804213604621"
+ },
+ {
   "id": "2118066942187573401",
   "text": "🚨 JD Vance says Republicans' midterm losses were partly due to US support for Israel.\n\nThe Vice President's remark adds a new layer after earlier reports that he blamed the Iran war for the defeat.\n\nvia warsurv",
   "img": "https://pbs.twimg.com/media/HWTikCBXoAAUncx.jpg",
@@ -142,21 +158,5 @@ window.POSTS=[
   "created_at": "2026-11-04T18:07:55.000Z",
   "t": "04 Nov 2026, 18:07",
   "url": "https://x.com/CocoPostel/status/2118042575160721568"
- },
- {
-  "id": "2118037862197125562",
-  "text": "Texas Democrat James Talarico says he wants to work with President Trump to bring relief to working Texans in the middle of the affordability crisis.\n\nHis idea: suspend the federal gas and diesel taxes for immediate relief at the pump.\n\nvia OSINT613",
-  "img": "",
-  "created_at": "2026-11-04T17:49:12.000Z",
-  "t": "04 Nov 2026, 17:49",
-  "url": "https://x.com/CocoPostel/status/2118037862197125562"
- },
- {
-  "id": "2118037678218428478",
-  "text": "Trump touts another record high on Wall Street.\n\nPresident Trump says the stock market has hit its 91st record high in less than two years, adding that Americans' 401(k) retirement accounts are \"through the roof.\"\n\nvia OSINT613",
-  "img": "",
-  "created_at": "2026-11-04T17:48:28.000Z",
-  "t": "04 Nov 2026, 17:48",
-  "url": "https://x.com/CocoPostel/status/2118037678218428478"
  }
 ];
