@@ -1,14 +1,86 @@
 [
-{"outlet":"BBC News","t":"05 Nov 2026, 03:47","url":"https://www.bbc.co.uk/news/articles/crz98zqkz7z0o","title":"Vance breaks ranks, ties Republican losses to the Iran war","summary":"Vice President JD Vance has given an unusually blunt account of why his party lost ground in the midterms, pointing to the conflict with Iran. The comments stand out as one of the sharpest public departures from a sitting president by his own deputy in years."},
-{"outlet":"The New York Times","t":"05 Nov 2026, 11:04","url":"https://www.nytimes.com/2026/11/05/world/middleeast/israel-election-netanyahu-trump.html","title":"Netanyahu claims fraud over Arab turnout in Israeli vote","summary":"Benjamin Netanyahu and his allies say Arab voters unfairly decided last month's election. Electoral officials confirm some irregularities are under investigation but insist they could not have changed the outcome."},
-{"outlet":"The New York Times","t":"05 Nov 2026, 10:56","url":"https://www.nytimes.com/2026/11/05/world/middleeast/israel-herzog-prime-minister.html","title":"Israeli party chiefs meet Herzog over who forms next government","summary":"President Isaac Herzog is consulting party leaders on which candidate should get the first mandate to build a coalition. The talks open the formal process of choosing Israel's next prime minister."},
-{"outlet":"Al Jazeera","t":"05 Nov 2026, 11:32","url":"https://www.aljazeera.com/news/2026/11/5/iran-gaza-ukraine-what-will-us-midterm-results-mean-for-these-conflicts","title":"What a Democratic Congress could mean for Iran, Gaza and Ukraine","summary":"Democrats made major gains in the midterms but fall short of the two thirds needed to override a presidential veto. That limits how far they can force changes to US policy on the wars in the Middle East and Ukraine."},
-{"outlet":"BBC News","t":"04 Nov 2026, 18:01","url":"https://www.bbc.co.uk/news/articles/cq1kdgnn2xdeo","title":"Democrats take Congress, but the veto still belongs to Trump","summary":"With control of Congress, Democrats can now pass their own bills and steer investigations. Any legislation, however, still faces a possible presidential veto."},
-{"outlet":"Al Jazeera","t":"05 Nov 2026, 11:33","url":"https://www.aljazeera.com/news/2026/11/5/knives-out-will-congress-impeach-pete-hegseth-after-gop-midterms-loss","title":"Pressure builds for Hegseth impeachment after midterm shift","summary":"A Democratic House could approve articles of impeachment against Defence Secretary Pete Hegseth. Removal would still require Republican votes in the Senate."},
-{"outlet":"Al Jazeera","t":"05 Nov 2026, 12:04","url":"https://www.aljazeera.com/news/2026/11/5/security-%e2%81%a0officer-killed-in-stabbing-attack-in-jordans-capital","title":"Security officer killed in knife attack in Amman","summary":"A member of the security forces has died after a stabbing in the Jordanian capital. Details are still emerging."},
-{"outlet":"The New York Times","t":"05 Nov 2026, 11:54","url":"https://www.nytimes.com/2026/11/05/world/europe/bomb-threats-europe-flights-airlines.html","title":"Fresh wave of bomb threats grounds flights across Europe","summary":"Several aircraft, including flights in Italy and France, were diverted or checked after threats were phoned in. All landed safely and officials say no explosives were discovered."},
-{"outlet":"The Guardian","t":"05 Nov 2026, 11:00","url":"https://www.theguardian.com/world/2026/nov/05/unsung-heroes-behind-lula-surprise-election-triumph-brazil-runoff-bolsonaro","title":"Older voters helped carry Lula to victory in Brazil","summary":"Elderly Brazilians, some voting for the first time in years, are being credited with tipping the runoff toward President Lula. He defeated the far right challenger Flávio Bolsonaro."},
-{"outlet":"BBC News","t":"05 Nov 2026, 08:07","url":"https://www.bbc.co.uk/news/articles/cwp9g3rlp8jlo","title":"Hong Kong activist Joshua Wong handed ten year sentence","summary":"Joshua Wong, who became the face of the city's pro democracy movement, has been jailed for a decade under the national security law. He is one of hundreds held under the legislation."},
-{"outlet":"The Guardian","t":"04 Nov 2026, 18:18","url":"https://www.theguardian.com/world/2026/nov/04/british-healthcare-worker-ebola-evacuated-drc-to-uk-document-shows","title":"British health worker with Ebola flown home from Congo","summary":"A British healthcare worker infected with Ebola is being brought back from the Democratic Republic of the Congo. The patient is said to be stable and will be treated in a specialist isolation unit."},
-{"outlet":"The New York Times","t":"05 Nov 2026, 10:06","url":"https://www.nytimes.com/2026/11/05/world/europe/france-protests-general-strike.html","title":"France braces for nationwide strike over living costs","summary":"Unions have called more than 200 demonstrations across France on Thursday. The action escalates weeks of protest against rising prices."}
+ {
+  "outlet": "BBC News",
+  "t": "05 Nov 2026, 03:47",
+  "url": "https://www.bbc.co.uk/news/articles/crz98zqkz7z0o",
+  "title": "Vance breaks ranks, ties Republican losses to the Iran war",
+  "summary": "Vice President JD Vance has given an unusually blunt account of why his party lost ground in the midterms, pointing to the conflict with Iran. The comments stand out as one of the sharpest public departures from a sitting president by his own deputy in years."
+ },
+ {
+  "outlet": "Al Jazeera",
+  "t": "05 Nov 2026, 16:12",
+  "url": "https://www.aljazeera.com/news/2026/11/5/vance-eyes-2028-reset-as-republicans-mull-pivot-after-us-midterms-drubbing",
+  "title": "Republicans weigh a new direction as Vance looks to 2028",
+  "summary": "After heavy midterm losses, senior Republicans are debating how far to move away from the Trump brand. Vance is seen positioning himself for a fresh start ahead of the next presidential race."
+ },
+ {
+  "outlet": "The New York Times",
+  "t": "05 Nov 2026, 11:04",
+  "url": "https://www.nytimes.com/2026/11/05/world/middleeast/israel-election-netanyahu-trump.html",
+  "title": "Netanyahu claims fraud over Arab turnout in Israeli vote",
+  "summary": "Benjamin Netanyahu and his allies say Arab voters unfairly decided last month's election. Electoral officials confirm some irregularities are under investigation but insist they could not have changed the outcome."
+ },
+ {
+  "outlet": "Al Jazeera",
+  "t": "05 Nov 2026, 14:45",
+  "url": "https://www.aljazeera.com/opinions/2026/11/5/can-irans-new-supreme-leader-make-peace-from-behind-the-scenes",
+  "title": "Mojtaba Khamenei's quiet style hints at a new way of ruling Iran",
+  "summary": "Iran's new supreme leader appears to be consulting widely rather than issuing orders from the top. Analysts ask whether this emerging approach could open a path towards peace."
+ },
+ {
+  "outlet": "The New York Times",
+  "t": "05 Nov 2026, 15:41",
+  "url": "https://www.nytimes.com/2026/11/05/world/europe/melania-trump-oleshky-ukraine-ceasefire.html",
+  "title": "Melania Trump emerges as an unlikely broker on Ukraine",
+  "summary": "Officials in both Moscow and Kyiv credit the first lady's team with pushing through the evacuation of a besieged town. Both capitals also saw value in handing her a humanitarian success."
+ },
+ {
+  "outlet": "The New York Times",
+  "t": "05 Nov 2026, 16:19",
+  "url": "https://www.nytimes.com/2026/11/05/world/europe/bomb-threats-europe-flights-airlines.html",
+  "title": "Hoax bomb threats rattle European air travel again",
+  "summary": "More than a dozen flights targeted on Thursday touched down without incident, following a similar wave earlier in the week. The false alarms are adding to nerves over the region's airspace."
+ },
+ {
+  "outlet": "The New York Times",
+  "t": "05 Nov 2026, 16:06",
+  "url": "https://www.nytimes.com/2026/11/05/world/americas/bolsonaro-escape-brazil-milei-adviser-argentina.html",
+  "title": "Milei aide reportedly met Bolsonaro as he fled Brazil",
+  "summary": "A senior adviser to Argentina's president greeted defeated candidate Flávio Bolsonaro at an Argentine airport, according to people involved. The episode raises fresh questions about Buenos Aires' role in his departure."
+ },
+ {
+  "outlet": "BBC News",
+  "t": "05 Nov 2026, 13:51",
+  "url": "https://www.bbc.co.uk/news/articles/cwp9g3rlp8jlo",
+  "title": "Joshua Wong handed ten years in prison in Hong Kong",
+  "summary": "The activist who became the face of the city's democracy movement has been sentenced under the national security law. He is one of hundreds held under the sweeping legislation."
+ },
+ {
+  "outlet": "BBC News",
+  "t": "05 Nov 2026, 15:43",
+  "url": "https://www.bbc.co.uk/news/articles/ckx2qzv835pgo",
+  "title": "France hit by fresh strikes as unions press for answers",
+  "summary": "Five major unions joined a national day of walkouts and marches over wages and rising costs. Hundreds of protests were planned across the country."
+ },
+ {
+  "outlet": "The New York Times",
+  "t": "05 Nov 2026, 13:27",
+  "url": "https://www.nytimes.com/2026/11/05/world/europe/british-ebola-case-congo-uk.html",
+  "title": "British Ebola patient flown home from Congo",
+  "summary": "A UK healthcare worker infected in the Democratic Republic of the Congo is being brought back for specialist care and is said to be stable. Officials say the risk to the public remains low as the outbreak has claimed more than 5,000 lives across Africa."
+ },
+ {
+  "outlet": "BBC News",
+  "t": "05 Nov 2026, 15:00",
+  "url": "https://www.bbc.co.uk/news/articles/c39wz44411w0o",
+  "title": "Six killed in New York building fire",
+  "summary": "A blaze in a New York City building has left six people dead and others hurt. Around 230 firefighters and medics responded, and the cause is still being investigated."
+ },
+ {
+  "outlet": "The New York Times",
+  "t": "05 Nov 2026, 13:54",
+  "url": "https://www.nytimes.com/2026/11/05/world/europe/finland-fitburg-russia-ship-baltic-cables-sabotage.html",
+  "title": "Finland jails two sailors over Baltic cable damage",
+  "summary": "A Finnish court found the captain and boatswain of a cargo ship guilty of aggravated criminal damage to an undersea cable. The incident happened in the Gulf of Finland last year."
+ }
 ]
