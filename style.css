@@ -48,3 +48,9 @@ footer{border-top:3px double var(--ink);margin-top:40px;padding-top:20px;padding
 .report-standfirst{font:600 18px/1.45 var(--serif);color:#333;border-left:3px solid var(--acc);padding-left:14px;margin:0 0 22px}
 .report-body p{font-size:18px;line-height:1.65;margin:0 0 1.1em}
 .card h3 a{text-decoration:none}.card h3 a:hover{text-decoration:underline;color:var(--acc)}
+
+.share{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:28px 0 8px;padding-top:14px;border-top:1px solid var(--rule)}
+.share-label{font:700 12px var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin-right:4px}
+.share .sb{font:600 12px var(--sans);padding:6px 12px;border:1px solid var(--ink);border-radius:3px;background:#fff;color:var(--ink);cursor:pointer;text-decoration:none}
+.share .sb:hover{background:var(--ink);color:#fff}
+.share.compact{margin:10px 0 0;padding-top:8px;gap:6px}.share.compact .share-label{display:none}.share.compact .sb{padding:4px 8px;font-size:11px}

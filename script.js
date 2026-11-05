@@ -29,8 +29,37 @@ function render(tab){
 function renderReportList(R){
  const box=document.getElementById('reports');
  if(!box) return;
- box.innerHTML=R.map(r=>`<article class="card"><div class="kick">Report</div><h3><a href="report.html?id=${encodeURIComponent(r.slug)}">${esc(r.title)}</a></h3><p>${esc(r.summary)}</p><div class="meta">${esc(r.t)} GMT · <a href="report.html?id=${encodeURIComponent(r.slug)}">Read the report</a></div></article>`).join('');
+ box.innerHTML=R.map(r=>`<article class="card"><div class="kick">Report</div><h3><a href="report.html?id=${encodeURIComponent(r.slug)}">${esc(r.title)}</a></h3><p>${esc(r.summary)}</p><div class="meta">${esc(r.t)} GMT · <a href="report.html?id=${encodeURIComponent(r.slug)}">Read the report</a></div>${shareBar(r,true)}</article>`).join('');
 }
+
+
+function shareBar(r,compact){
+ const u=location.origin+'/report.html?id='+encodeURIComponent(r.slug);
+ const t=r.title;
+ const eu=encodeURIComponent(u),et=encodeURIComponent(t);
+ return `<div class="share${compact?' compact':''}" data-slug="${esc(r.slug)}"><span class="share-label">Share</span>
+ <a class="sb" href="https://x.com/intent/post?text=${et}&url=${eu}" target="_blank" rel="noopener">X</a>
+ <a class="sb" href="https://wa.me/?text=${et}%20${eu}" target="_blank" rel="noopener">WhatsApp</a>
+ <a class="sb" href="https://t.me/share/url?url=${eu}&text=${et}" target="_blank" rel="noopener">Telegram</a>
+ <a class="sb" href="https://www.facebook.com/sharer/sharer.php?u=${eu}" target="_blank" rel="noopener">Facebook</a>
+ <button class="sb" type="button" data-act="link">Copy link</button>
+ <button class="sb" type="button" data-act="text">Copy report</button>
+ <button class="sb native" type="button" data-act="native"${navigator.share?'':' hidden'}>More</button></div>`;
+}
+document.addEventListener('click',async e=>{
+ const b=e.target.closest('.share button');if(!b)return;
+ const box=b.closest('.share');const slug=box.dataset.slug;
+ const r=(window.__REPORTS||[]).find(x=>x.slug===slug);if(!r)return;
+ const u=location.origin+'/report.html?id='+encodeURIComponent(slug);
+ const full=r.title+'\n\n'+r.summary+'\n\n'+String(r.body||'').replace(/\\n/g,'\n')+'\n\n'+u;
+ const act=b.dataset.act;
+ try{
+  if(act==='native'&&navigator.share){await navigator.share({title:r.title,text:r.summary,url:u});return}
+  await navigator.clipboard.writeText(act==='link'?u:full);
+ }catch(_){const ta=document.createElement('textarea');ta.value=act==='link'?u:full;document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(__){}ta.remove()}
+ const o=b.textContent;b.textContent='Copied';setTimeout(()=>b.textContent=o,1500);
+});
+document.addEventListener('DOMContentLoaded',()=>{});
 
 function renderReportPage(R){
  const id=new URLSearchParams(location.search).get('id')||'';
@@ -46,7 +75,8 @@ function renderReportPage(R){
  <h1 class="report-title">${esc(r.title)}</h1>
  <div class="meta report-meta">${esc(r.t)} GMT · London</div>
  <div class="report-standfirst">${esc(r.summary)}</div>
- <div class="report-body">${paras(r.body)}</div>`;
+ <div class="report-body">${paras(r.body)}</div>
+ ${shareBar(r,false)}`;
 }
 
 const onHome=!!document.getElementById('lead');
@@ -61,6 +91,6 @@ const dl=document.getElementById('dateline');
 if(dl) dl.textContent='London · '+new Date().toLocaleDateString('en-GB',{timeZone:'Europe/London',weekday:'long',day:'numeric',month:'long',year:'numeric'});
 
 fetch('assets/reports.json?v='+Date.now()).then(r=>r.json()).then(R=>{
- if(document.getElementById('report')) renderReportPage(R);
+ window.__REPORTS=R; if(document.getElementById('report')) renderReportPage(R);
  else renderReportList(R);
 }).catch(()=>{const press=document.getElementById('press'); if(press) press.hidden=true; const report=document.getElementById('report'); if(report) report.innerHTML='<p class="empty">Could not load the report.</p>';});
