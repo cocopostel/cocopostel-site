@@ -30,8 +30,8 @@ R_DIR = ROOT / "r"
 OG_DIR = ROOT / "assets" / "og"
 AVATAR = ROOT / "assets" / "avatar.jpg"
 SITE = "https://cocopostel.com"
-CSS_V = "62"
-JS_V = "62"
+CSS_V = "69"
+JS_V = "69"
 
 # Brand colours matching style.css
 INK = (18, 18, 18)
