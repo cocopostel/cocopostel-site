@@ -29,12 +29,12 @@ function render(tab){
 function renderReportList(R){
  const box=document.getElementById('reports');
  if(!box) return;
- box.innerHTML=R.map(r=>`<article class="card"><div class="kick">Report</div><h3><a href="report.html?id=${encodeURIComponent(r.slug)}">${esc(r.title)}</a></h3><p>${esc(r.summary)}</p><div class="meta">${esc(r.t)} GMT · <a href="report.html?id=${encodeURIComponent(r.slug)}">Read the report</a></div>${shareBar(r,true)}</article>`).join('');
+ box.innerHTML=R.map(r=>`<article class="card"><div class="kick">Report</div><h3><a href="/r/${encodeURIComponent(r.slug)}/">${esc(r.title)}</a></h3><p>${esc(r.summary)}</p><div class="meta">${esc(r.t)} GMT · <a href="/r/${encodeURIComponent(r.slug)}/">Read the report</a></div>${shareBar(r,true)}</article>`).join('');
 }
 
 
 function shareBar(r,compact){
- const u=location.origin+'/report.html?id='+encodeURIComponent(r.slug);
+ const u=location.origin+'/r/'+encodeURIComponent(r.slug)+'/';
  const t=r.title;
  const eu=encodeURIComponent(u),et=encodeURIComponent(t);
  return `<div class="share${compact?' compact':''}" data-slug="${esc(r.slug)}"><span class="share-label">Share</span>
@@ -50,7 +50,7 @@ document.addEventListener('click',async e=>{
  const b=e.target.closest('.share button');if(!b)return;
  const box=b.closest('.share');const slug=box.dataset.slug;
  const r=(window.__REPORTS||[]).find(x=>x.slug===slug);if(!r)return;
- const u=location.origin+'/report.html?id='+encodeURIComponent(slug);
+ const u=location.origin+'/r/'+encodeURIComponent(slug)+'/';
  const full=r.title+'\n\n'+r.summary+'\n\n'+String(r.body||'').replace(/\\n/g,'\n')+'\n\n'+u;
  const act=b.dataset.act;
  try{
@@ -63,20 +63,9 @@ document.addEventListener('DOMContentLoaded',()=>{});
 
 function renderReportPage(R){
  const id=new URLSearchParams(location.search).get('id')||'';
- const r=R.find(x=>x.slug===id)||R[0];
+ if(id){ location.replace('/r/'+encodeURIComponent(id)+'/'); return; }
  const root=document.getElementById('report');
- if(!root||!r){
-  if(root) root.innerHTML='<p class="empty">Report not found. <a href="index.html#press">Back to From the Press</a></p>';
-  return;
- }
- document.title=r.title+' · CocoPostel News';
- root.innerHTML=`<p class="back"><a href="index.html#press">← Back to From the Press</a></p>
- <div class="kick">Report</div>
- <h1 class="report-title">${esc(r.title)}</h1>
- <div class="meta report-meta">${esc(r.t)} GMT · London</div>
- <div class="report-standfirst">${esc(r.summary)}</div>
- <div class="report-body">${paras(r.body)}</div>
- ${shareBar(r,false)}`;
+ if(root) root.innerHTML='<p class="empty">Report not found. <a href="/#press">Back to From the Press</a></p>';
 }
 
 const onHome=!!document.getElementById('lead');
