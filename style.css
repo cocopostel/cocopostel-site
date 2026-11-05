@@ -37,3 +37,5 @@ footer{border-top:3px double var(--ink);margin-top:40px;padding-top:20px;padding
 @media(max-width:560px){.more{grid-template-columns:1fr}.topbar span:nth-child(2){display:none}.masthead img{width:44px;height:44px}.sections{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}.sections>*{flex:none}.lead p{font-size:16px}}
 @media(max-width:560px){.masthead{gap:10px}.masthead h1{font-size:30px}.motto{font-size:12px;text-align:left}.masthead>div{min-width:0}}
 .press-note{font-size:14px;color:#555;margin:0 0 14px}
+
+.sections a.press-tab{background:var(--acc);color:#fff;padding:5px 12px;border-radius:3px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:12px;text-decoration:none}.sections a.press-tab:hover{background:#8f1d17}
