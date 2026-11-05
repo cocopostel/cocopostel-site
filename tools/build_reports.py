@@ -30,8 +30,8 @@ R_DIR = ROOT / "r"
 OG_DIR = ROOT / "assets" / "og"
 AVATAR = ROOT / "assets" / "avatar.jpg"
 SITE = "https://cocopostel.com"
-CSS_V = "60"
-JS_V = "60"
+CSS_V = "62"
+JS_V = "62"
 
 # Brand colours matching style.css
 INK = (18, 18, 18)
@@ -253,7 +253,7 @@ def page_html(r: dict) -> str:
     t = r.get("t") or ""
     desc = desc200(summary)
     url = f"{SITE}/r/{slug}/"
-    img = f"{SITE}/assets/og/{slug}.png"
+    img = f"{SITE}/assets/og/{slug}.png?v={CSS_V}"
     published = parse_gmt(t)
     image_rel = (r.get("image") or "").strip()
     if image_rel:
