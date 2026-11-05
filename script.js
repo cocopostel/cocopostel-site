@@ -25,3 +25,5 @@ const tk=P.filter(p=>brk(p.text)).slice(0,8).map(p=>`<a href="${p.url}" target="
 document.getElementById('ticker').innerHTML=tk+tk;
 document.getElementById('dateline').textContent='London · '+new Date().toLocaleDateString('en-GB',{timeZone:'Europe/London',weekday:'long',day:'numeric',month:'long',year:'numeric'});
 setTimeout(()=>{if(!document.querySelector('#live iframe'))document.getElementById('fallback').hidden=false},6000);
+
+fetch('assets/reports.json?v='+Date.now()).then(r=>r.json()).then(R=>{document.getElementById('reports').innerHTML=R.map(r=>`<article class="card"><div class="kick">${esc(r.outlet)}</div><h3><a href="${r.url}" target="_blank" rel="noopener">${esc(r.title)}</a></h3><p>${esc(r.summary)}</p><div class="meta">${r.t} GMT · <a href="${r.url}" target="_blank" rel="noopener">Reported by ${esc(r.outlet)}</a></div></article>`).join('')}).catch(()=>{document.getElementById('press').hidden=true});
