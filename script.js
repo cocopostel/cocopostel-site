@@ -29,7 +29,7 @@ function render(tab){
 function renderReportList(R){
  const box=document.getElementById('reports');
  if(!box) return;
- box.innerHTML=R.map(r=>`<article class="card"><div class="kick">Report</div><h3><a href="/r/${encodeURIComponent(r.slug)}/">${esc(r.title)}</a></h3><p>${esc(r.summary)}</p><div class="meta">${esc(r.t)} GMT · <a href="/r/${encodeURIComponent(r.slug)}/">Read the report</a></div>${shareBar(r,true)}</article>`).join('');
+ box.innerHTML=R.map(r=>{const thumb=r.image?`<a href="/r/${encodeURIComponent(r.slug)}/"><img class="thumb" loading="lazy" src="${esc(r.image)}" alt="${esc(r.title)}"></a>`:'';return `<article class="card">${thumb}<div class="kick">Report</div><h3><a href="/r/${encodeURIComponent(r.slug)}/">${esc(r.title)}</a></h3><p>${esc(r.summary)}</p><div class="meta">${esc(r.t)} GMT · <a href="/r/${encodeURIComponent(r.slug)}/">Read the report</a></div>${shareBar(r,true)}</article>`}).join('');
 }
 
 

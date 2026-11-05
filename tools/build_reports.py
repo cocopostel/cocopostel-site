@@ -30,8 +30,8 @@ R_DIR = ROOT / "r"
 OG_DIR = ROOT / "assets" / "og"
 AVATAR = ROOT / "assets" / "avatar.jpg"
 SITE = "https://cocopostel.com"
-CSS_V = "59"
-JS_V = "59"
+CSS_V = "60"
+JS_V = "60"
 
 # Brand colours matching style.css
 INK = (18, 18, 18)
@@ -124,7 +124,35 @@ def circular_avatar(size: int = 72) -> Image.Image:
     return out
 
 
-def make_og(title: str, out_path: Path, subtitle: str | None = None) -> None:
+def cover_crop(src: Image.Image, tw: int, th: int) -> Image.Image:
+    """Centre-crop/resize to exact size (cover). Bias slightly upward for portraits."""
+    sw, sh = src.size
+    scale = max(tw / sw, th / sh)
+    nw, nh = int(sw * scale + 0.5), int(sh * scale + 0.5)
+    resized = src.resize((nw, nh), Image.Resampling.LANCZOS)
+    left = max(0, (nw - tw) // 2)
+    top = max(0, int((nh - th) * 0.28))  # favour face for headshots
+    if top + th > nh:
+        top = max(0, nh - th)
+    return resized.crop((left, top, left + tw, top + th))
+
+
+def resolve_image(rel: str | None) -> Path | None:
+    if not rel:
+        return None
+    rel = rel.strip()
+    if not rel:
+        return None
+    p = ROOT / rel.lstrip("/")
+    return p if p.is_file() else None
+
+
+def make_og(
+    title: str,
+    out_path: Path,
+    subtitle: str | None = None,
+    portrait_path: Path | None = None,
+) -> None:
     W, H = 1200, 630
     img = Image.new("RGB", (W, H), CREAM)
     draw = ImageDraw.Draw(img)
@@ -133,35 +161,61 @@ def make_og(title: str, out_path: Path, subtitle: str | None = None) -> None:
     draw.rectangle([0, 0, W, 10], fill=ACC)
     # Bottom ink bar
     draw.rectangle([0, H - 14, W, H], fill=INK)
-    # Left red stripe
-    draw.rectangle([0, 10, 8, H - 14], fill=ACC)
+
+    text_left = 56
+    text_right = W - 56
+    max_title_w = text_right - text_left
+
+    if portrait_path and portrait_path.is_file():
+        # Left portrait panel (~42% width) with red accent edge
+        panel_w = 500
+        try:
+            port = Image.open(portrait_path).convert("RGB")
+            cropped = cover_crop(port, panel_w, H - 24)  # between bars
+            img.paste(cropped, (0, 10))
+            # Red vertical rule between photo and text
+            draw.rectangle([panel_w, 10, panel_w + 6, H - 14], fill=ACC)
+            text_left = panel_w + 36
+            max_title_w = text_right - text_left
+        except Exception:
+            # Fall back to text-only card
+            draw.rectangle([0, 10, 8, H - 14], fill=ACC)
+    else:
+        # Left red stripe
+        draw.rectangle([0, 10, 8, H - 14], fill=ACC)
 
     # Brand row
-    avatar = circular_avatar(78)
-    img.paste(avatar, (56, 48), avatar)
-    brand_font = load_font(FONT_DISP if FONT_DISP.exists() else FONT_SERIF_BOLD, 42, 900)
-    tag_font = load_font(FONT_SANS_REG if FONT_SANS_REG.exists() else FONT_SANS, 22)
-    draw.text((152, 58), "CocoPostel News", font=brand_font, fill=INK)
-    draw.text((152, 108), "Independent reporting", font=tag_font, fill=MUTE)
+    brand_font = load_font(FONT_DISP if FONT_DISP.exists() else FONT_SERIF_BOLD, 36 if portrait_path else 42, 900)
+    tag_font = load_font(FONT_SANS_REG if FONT_SANS_REG.exists() else FONT_SANS, 20 if portrait_path else 22)
+    avatar_size = 64 if portrait_path else 78
+    avatar = circular_avatar(avatar_size)
+    brand_y = 40 if portrait_path else 48
+    img.paste(avatar, (text_left, brand_y), avatar)
+    draw.text((text_left + avatar_size + 16, brand_y + 4), "CocoPostel News", font=brand_font, fill=INK)
+    draw.text((text_left + avatar_size + 16, brand_y + 44), "Independent reporting", font=tag_font, fill=MUTE)
 
     # Divider under brand
-    draw.line([(56, 160), (W - 56, 160)], fill=ACC, width=3)
+    div_y = brand_y + avatar_size + 18
+    draw.line([(text_left, div_y), (text_right, div_y)], fill=ACC, width=3)
 
     # Headline
-    head_font = load_font(FONT_DISP if FONT_DISP.exists() else FONT_SERIF_BOLD, 54, 700)
-    lines = wrap_lines(draw, title, head_font, W - 112, max_lines=4)
-    y = 200
+    head_size = 42 if portrait_path else 54
+    head_font = load_font(FONT_DISP if FONT_DISP.exists() else FONT_SERIF_BOLD, head_size, 700)
+    max_lines = 5 if portrait_path else 4
+    lines = wrap_lines(draw, title, head_font, max_title_w, max_lines=max_lines)
+    y = div_y + 24
+    line_h = 52 if portrait_path else 66
     for line in lines:
-        draw.text((56, y), line, font=head_font, fill=INK)
-        y += 66
+        draw.text((text_left, y), line, font=head_font, fill=INK)
+        y += line_h
 
-    if subtitle and y < H - 80:
-        sub_font = load_font(FONT_SANS_REG if FONT_SANS_REG.exists() else FONT_SANS, 24)
-        sub_lines = wrap_lines(draw, subtitle, sub_font, W - 112, max_lines=2)
-        y += 10
+    if subtitle and y < H - 70:
+        sub_font = load_font(FONT_SANS_REG if FONT_SANS_REG.exists() else FONT_SANS, 22 if portrait_path else 24)
+        sub_lines = wrap_lines(draw, subtitle, sub_font, max_title_w, max_lines=2)
+        y += 8
         for line in sub_lines:
-            draw.text((56, y), line, font=sub_font, fill=MUTE)
-            y += 32
+            draw.text((text_left, y), line, font=sub_font, fill=MUTE)
+            y += 30
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     img.save(out_path, "PNG", optimize=True)
@@ -201,6 +255,15 @@ def page_html(r: dict) -> str:
     url = f"{SITE}/r/{slug}/"
     img = f"{SITE}/assets/og/{slug}.png"
     published = parse_gmt(t)
+    image_rel = (r.get("image") or "").strip()
+    if image_rel:
+        hero = (
+            f'<figure class="report-hero">'
+            f'<img src="{esc(image_rel)}" alt="{esc(title)}" width="1074" height="1333" loading="eager">'
+            f"</figure>"
+        )
+    else:
+        hero = ""
     return f"""<!DOCTYPE html>
 <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)} · CocoPostel News</title>
@@ -233,6 +296,7 @@ def page_html(r: dict) -> str:
 <h1 class="report-title">{esc_text(title)}</h1>
 <div class="meta report-meta">{esc_text(t)} GMT · London</div>
 <div class="report-standfirst">{esc_text(summary)}</div>
+{hero}
 <div class="report-body">
 {body_paras(body)}
 </div>
@@ -295,7 +359,13 @@ def main() -> None:
         if not re.fullmatch(r"[a-z0-9\-]+", slug):
             raise SystemExit(f"bad slug: {slug!r}")
         keep.add(slug)
-        make_og(r["title"], OG_DIR / f"{slug}.png", subtitle=desc200(r.get("summary") or ""))
+        portrait = resolve_image(r.get("image"))
+        make_og(
+            r["title"],
+            OG_DIR / f"{slug}.png",
+            subtitle=desc200(r.get("summary") or ""),
+            portrait_path=portrait,
+        )
         out_dir = R_DIR / slug
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(page_html(r), encoding="utf-8")
